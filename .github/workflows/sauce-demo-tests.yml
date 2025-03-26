@@ -1,0 +1,31 @@
+name: Run Sauce Demo Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-sauce-demo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install
+
+      - name: Run Sauce Demo Tests
+        run: |
+          npx playwright test tests/e2e/sauce-demo/sauce-suite.spec.ts \
+                              tests/e2e/sauce-demo/sauce.cart.spec.ts \
+                              tests/e2e/sauce-demo/sauce.checkout-flow.spec.ts \
+                              tests/e2e/sauce-demo/sauce.logintest.spec.ts \
+                              tests/e2e/sauce-demo/sauce.productsort.spec.ts
