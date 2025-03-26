@@ -1,0 +1,50 @@
+{
+  "name": "automation-exercise-framework",
+  "version": "1.0.0",
+  "description": "Playwright automation framework for Automation Exercise website",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:chrome": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:safari": "playwright test --project=webkit",
+    "test:mobile": "playwright test --project=mobile-chrome",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report reports/html-reports",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"tests/**/*.{ts,tsx}\"",
+    
+    "test:suite": "npm run test:registration && npm run test:cart && npm run test:checkout",
+    "test:registration": "playwright test tests/e2e/Automation\\ Excercise/login-registration.spec.ts",
+    "test:cart": "playwright test tests/e2e/shopping-cart.spec.ts",
+    "test:checkout": "playwright test tests/e2e/checkout.spec.ts",
+    "test:sauce": "playwright test tests/e2e/sauce-demo/sauce-suite.spec.ts",
+    "test:sauce:login": "playwright test tests/e2e/sauce-demo/sauce.logintest.spec.ts",
+    "test:sauce:products": "playwright test tests/e2e/sauce-demo/sauce.productsort.spec.ts",
+    "test:sauce:cart": "playwright test tests/e2e/sauce-demo/sauce.cart.spec.ts",
+    "test:sauce:checkout": "playwright test tests/e2e/sauce-demo/sauce.checkout-flow.spec.ts"
+  },
+  "keywords": [
+    "playwright",
+    "testing",
+    "automation",
+    "e-commerce"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@playwright/test": "^1.42.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-playwright": "^0.16.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  }
+}
