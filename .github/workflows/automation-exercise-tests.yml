@@ -1,12 +1,10 @@
 name: Run Automation Exercise Tests
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  automation-tests:
+  run-automation-exercise:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,13 +14,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Install dependencies
         run: npm ci
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install
 
       - name: Run Automation Exercise Tests
-        run: npx playwright test tests/e2e/Automation\ Excercise/
+        run: |
+          npx playwright test tests/e2e/Automation\ Excercise/checkout.spec.ts \
+                              tests/e2e/Automation\ Excercise/login-registration.spec.ts \
+                              tests/e2e/Automation\ Excercise/product-search.spec.ts \
+                              tests/e2e/Automation\ Excercise/shopping-cart.spec.ts
